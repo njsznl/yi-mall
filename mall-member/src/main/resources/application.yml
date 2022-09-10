@@ -6,6 +6,10 @@ spring:
     password: root
     url: jdbc:mysql://192.168.33.11:3306/mall-ums?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.10:8848
 server:
   port: 8005
 
