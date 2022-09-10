@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author xiao
+ * @author yi
  */
 @MapperScan("com.yi.mall.product.dao")
 @SpringBootApplication
