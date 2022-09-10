@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-@SpringBootTest(classes = MallProductApplicationTests.class)
-class MallProductApplicationTests {
+@SpringBootTest
+public class MallProductApplicationTest {
 
 
     @Autowired
@@ -34,7 +34,7 @@ class MallProductApplicationTests {
     @Test
     void selectById() {
         List<BrandEntity> list = brandService
-                .list(new QueryWrapper<BrandEntity>().eq("brand_id",2));
+                .list(new QueryWrapper<BrandEntity>().eq("brand_id", 2));
         for (BrandEntity entity : list) {
             System.out.println(entity);
         }

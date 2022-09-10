@@ -7,11 +7,11 @@ import com.yi.mall.product.entity.SpuInfoEntity;
 import java.util.Map;
 
 /**
- * spu��Ϣ
+ * spu信息
  *
  * @author yi
  * @email yilaokela@gmail.com
- * @date 2022-09-10 05:32:23
+ * @date 2022-09-10 14:07:13
  */
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 

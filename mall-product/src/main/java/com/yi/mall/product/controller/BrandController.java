@@ -19,11 +19,11 @@ import com.yi.common.utils.R;
 
 
 /**
- * Ʒ��
+ * 品牌
  *
  * @author yi
  * @email yilaokela@gmail.com
- * @date 2022-09-10 05:32:23
+ * @date 2022-09-10 14:07:13
  */
 @RestController
 @RequestMapping("product/brand")

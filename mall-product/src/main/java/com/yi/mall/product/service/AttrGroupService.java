@@ -7,11 +7,11 @@ import com.yi.mall.product.entity.AttrGroupEntity;
 import java.util.Map;
 
 /**
- * ���Է���
+ * 属性分组
  *
  * @author yi
  * @email yilaokela@gmail.com
- * @date 2022-09-10 05:32:22
+ * @date 2022-09-10 14:07:13
  */
 public interface AttrGroupService extends IService<AttrGroupEntity> {
 
