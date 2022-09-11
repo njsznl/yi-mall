@@ -16,7 +16,7 @@ import lombok.Data;
  */
 @Data
 @TableName("pms_brand")
-public class BrandEntity implements Serializable {
+public class 	BrandEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
