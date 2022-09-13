@@ -1,0 +1,19 @@
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: mall-third
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.10:8848
+    alicloud:
+      access-key:
+      secret-key:
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
+  profiles:
+    active: dev

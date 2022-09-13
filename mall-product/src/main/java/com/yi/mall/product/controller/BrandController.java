@@ -1,11 +1,14 @@
 package com.yi.mall.product.controller;
 
+import com.yi.common.valid.groups.AddGroupsInterface;
+import com.yi.common.valid.groups.UpdateGroupsInterface;
 import com.yi.common.utils.PageUtils;
 import com.yi.common.utils.R;
 import com.yi.mall.product.entity.BrandEntity;
 import com.yi.mall.product.service.BrandService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -56,12 +59,9 @@ public class BrandController {
         return R.ok().put("brand", brand);
     }
 
-    /**
-     * 保存
-     */
     @RequestMapping("/save")
     @RequiresPermissions("product:brand:save")
-    public R save(@RequestBody BrandEntity brand) {
+    public R save(@Validated(AddGroupsInterface.class) @RequestBody BrandEntity brand) {
         brandService.save(brand);
 
         return R.ok();
@@ -72,7 +72,7 @@ public class BrandController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("product:brand:update")
-    public R update(@RequestBody BrandEntity brand) {
+    public R update(@Validated(UpdateGroupsInterface.class) @RequestBody BrandEntity brand) {
         brandService.updateById(brand);
 
         return R.ok();
