@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yi.common.utils.PageUtils;
 import com.yi.mall.product.entity.CategoryBrandRelationEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,5 +24,6 @@ public interface CategoryBrandRelationService extends IService<CategoryBrandRela
 
     void updateCategoryName(Long catId, String name);
 
+    List<CategoryBrandRelationEntity> categroyBrandRelation(Long catId);
 }
 

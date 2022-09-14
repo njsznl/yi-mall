@@ -16,6 +16,7 @@ import com.yi.mall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -27,6 +28,9 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private CategoryBrandRelationDao categoryBrandRelationDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -78,5 +82,12 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         entity.setCatelogId(catId);
         entity.setCatelogName(name);
         this.update(entity, new UpdateWrapper<CategoryBrandRelationEntity>().eq("cagelog_id", catId));
+    }
+
+    @Override
+    public List<CategoryBrandRelationEntity> categroyBrandRelation(Long catId) {
+        // 找到所有的品牌信息
+        return categoryBrandRelationDao.selectList(new QueryWrapper<CategoryBrandRelationEntity>()
+                .eq("catelog_id", catId));
     }
 }

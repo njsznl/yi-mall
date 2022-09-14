@@ -9,6 +9,7 @@ import com.yi.mall.product.service.AttrGroupService;
 import com.yi.mall.product.service.AttrService;
 import com.yi.mall.product.service.CategoryService;
 import com.yi.mall.product.vo.AttrGroupRelationVO;
+import com.yi.mall.product.vo.AttrGroupWithAttrsVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,15 @@ public class AttrGroupController {
     private AttrService attrService;
     @Autowired
     private AttrAttrgroupRelationService attrAttrgroupRelationService;
+
+
+    @GetMapping("/{catelogId}/withattr")
+    public R getAttrgroupWithAttrs(@PathVariable("catelogId") Long catelogId){
+        // 根据三级分类的编号获取对应的属性组和属性组的属性信息
+        List<AttrGroupWithAttrsVo> list = attrGroupService
+                .getAttrgroupWithAttrsByCatelogId(catelogId);
+        return R.ok().put("data",list);
+    }
 
     @RequestMapping("/list/{catelogId}")
     @RequiresPermissions("product:attrgroup:list")
