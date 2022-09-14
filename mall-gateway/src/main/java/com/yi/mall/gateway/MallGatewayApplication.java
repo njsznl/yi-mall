@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
- * @author xiao
+ * @author yi
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class MallGatewayApplication {

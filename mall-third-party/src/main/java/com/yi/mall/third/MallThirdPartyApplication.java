@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 三方组件服务：集成各种第三方的对接流程
  *
  *
- * @author xiao
+ * @author yi
  */
 @SpringBootApplication
 public class MallThirdPartyApplication {

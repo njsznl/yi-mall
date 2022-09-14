@@ -7,9 +7,15 @@ import com.yi.common.utils.PageUtils;
 import com.yi.common.utils.Query;
 import com.yi.mall.product.dao.CategoryDao;
 import com.yi.mall.product.entity.CategoryEntity;
+import com.yi.mall.product.service.CategoryBrandRelationService;
 import com.yi.mall.product.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -56,6 +62,42 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     @Override
     public void removeCategoryByIds(List<Long> catIds) {
         baseMapper.deleteBatchIds(catIds);
+    }
+
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        List<Long> paths = new ArrayList<>();
+        List<Long> parentPath = findParentPath(catelogId, paths);
+        Collections.reverse(parentPath);
+        return parentPath.toArray(new Long[parentPath.size()]);
+    }
+
+    @Autowired
+    private CategoryBrandRelationService categoryBrandRelationService;
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void updateDetail(CategoryEntity category) {
+        this.updateById(category);
+        if (StringUtils.hasText(category.getName())) {
+            categoryBrandRelationService.updateCategoryName(category.getCatId(), category.getName());
+        }
+    }
+
+    /**
+     * 225,22,2
+     *
+     * @param catelogId catelogId
+     * @param paths     paths
+     * @return result
+     */
+    private List<Long> findParentPath(Long catelogId, List<Long> paths) {
+        paths.add(catelogId);
+        CategoryEntity entity = this.getById(catelogId);
+        if(entity.getParentCid() != 0){
+            findParentPath(entity.getParentCid(),paths);
+        }
+        return paths;
     }
 
     private List<CategoryEntity> getCategoryChildren(CategoryEntity categoryEntity, List<CategoryEntity> categoryEntities) {

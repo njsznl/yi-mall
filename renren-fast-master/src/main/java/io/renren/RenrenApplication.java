@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 /**
- * @author xiao
+ * @author yi
  */
 @SpringBootApplication
 public class RenrenApplication {
