@@ -12,15 +12,12 @@ import com.yi.mall.product.dao.AttrGroupDao;
 import com.yi.mall.product.entity.AttrAttrgroupRelationEntity;
 import com.yi.mall.product.entity.AttrEntity;
 import com.yi.mall.product.entity.AttrGroupEntity;
-import com.yi.mall.product.mapstruct.AttrGroupRelationMapper;
 import com.yi.mall.product.service.AttrGroupService;
 import com.yi.mall.product.service.AttrService;
-import com.yi.mall.product.vo.AttrGroupRelationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -33,9 +30,8 @@ import java.util.stream.Collectors;
 public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements AttrService {
 
     @Autowired
-    private AttrGroupRelationMapper attrGroupRelationMapper;
-    @Autowired
     private AttrAttrgroupRelationDao attrAttrgroupRelationDao;
+
     @Autowired
     private AttrGroupService attrGroupService;
     @Autowired
@@ -69,16 +65,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
                 .collect(Collectors.toList());
     }
 
-    /**
-     * 解除属性组和基本属性的关联关系
-     * 也就是删除 属性组和属性关联表中的记录
-     *
-     * @param vos 属性vo
-     */
-    @Override
-    public void deleteRelation(AttrGroupRelationVO[] vos) {
-        attrAttrgroupRelationDao.removeBatchRelation(attrGroupRelationMapper.toEntity(Arrays.asList(vos)));
-    }
 
     @Override
     public PageUtils getNoAttrRelation(Map<String, Object> params, Long attrgroupId) {

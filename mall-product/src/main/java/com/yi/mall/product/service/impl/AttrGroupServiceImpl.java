@@ -37,10 +37,10 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<>();
         if (StringUtils.hasText(key)) {
             // 拼接查询的条件
-            wrapper.and((obj) -> {
-                obj.eq("attr_group_id", key).or().like("attr_group_name", key);
-            });
-        }
+        wrapper.and((obj) -> {
+            obj.eq("attr_group_id", key).or().like("attr_group_name", key);
+        });
+    }
         if (catelogId == 0) {
             // 不根据catelogId来查询
             IPage<AttrGroupEntity> page = this.page(

@@ -4,7 +4,6 @@ import com.yi.common.utils.PageUtils;
 import com.yi.common.utils.R;
 import com.yi.mall.product.entity.AttrEntity;
 import com.yi.mall.product.entity.AttrGroupEntity;
-import com.yi.mall.product.mapstruct.AttrGroupRelationMapper;
 import com.yi.mall.product.service.AttrAttrgroupRelationService;
 import com.yi.mall.product.service.AttrGroupService;
 import com.yi.mall.product.service.AttrService;
@@ -14,7 +13,6 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.RelationService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -40,10 +38,9 @@ public class AttrGroupController {
     private AttrAttrgroupRelationService attrAttrgroupRelationService;
 
     @RequestMapping("/list/{catelogId}")
-    //@RequiresPermissions("product:attrgroup:list")
+    @RequiresPermissions("product:attrgroup:list")
     public R list(@RequestParam Map<String, Object> params
             , @PathVariable("catelogId") Long catelogId) {
-        // PageUtils page = attrGroupService.queryPage(params);
         PageUtils page = attrGroupService.queryPage(params, catelogId);
         return R.ok().put("page", page);
     }
@@ -86,7 +83,6 @@ public class AttrGroupController {
 
     @GetMapping("/{attrgroupId}/attr/relation")
     public R attrRelation(@PathVariable("attrgroupId") Long attrgroupId) {
-
         List<AttrEntity> list = attrService.getRelationAttr(attrgroupId);
         return R.ok().put("data", list);
     }
@@ -121,7 +117,7 @@ public class AttrGroupController {
      */
     @PostMapping("/attr/relation/delete")
     public R relationDelete(@RequestBody AttrGroupRelationVO[] vos) {
-        attrService.deleteRelation(vos);
+        attrAttrgroupRelationService.deleteRelation(vos);
         return R.ok();
     }
 

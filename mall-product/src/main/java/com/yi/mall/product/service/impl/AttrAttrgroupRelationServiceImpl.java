@@ -13,15 +13,20 @@ import com.yi.mall.product.vo.AttrGroupRelationVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author yi
+ */
 @RequiredArgsConstructor
 @Service("attrAttrgroupRelationService")
 public class AttrAttrgroupRelationServiceImpl extends ServiceImpl<AttrAttrgroupRelationDao, AttrAttrgroupRelationEntity>
         implements AttrAttrgroupRelationService {
 
     private final AttrGroupRelationMapper attrGroupRelationMapper;
+    private final AttrAttrgroupRelationDao attrAttrgroupRelationDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -31,6 +36,11 @@ public class AttrAttrgroupRelationServiceImpl extends ServiceImpl<AttrAttrgroupR
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public void deleteRelation(AttrGroupRelationVO[] vos) {
+        attrAttrgroupRelationDao.removeBatchRelation(attrGroupRelationMapper.toEntity(Arrays.asList(vos)));
     }
 
     @Override

@@ -23,14 +23,20 @@ import java.util.stream.Collectors;
 import static java.util.Comparator.comparingInt;
 
 
+/**
+ * @author yi
+ */
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    @Autowired
+    private CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
                 new Query<CategoryEntity>().getPage(params),
-                new QueryWrapper<CategoryEntity>()
+                new QueryWrapper<>()
         );
 
         return new PageUtils(page);
@@ -69,11 +75,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         List<Long> paths = new ArrayList<>();
         List<Long> parentPath = findParentPath(catelogId, paths);
         Collections.reverse(parentPath);
-        return parentPath.toArray(new Long[parentPath.size()]);
+        return parentPath.toArray(new Long[0]);
     }
-
-    @Autowired
-    private CategoryBrandRelationService categoryBrandRelationService;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -94,8 +97,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     private List<Long> findParentPath(Long catelogId, List<Long> paths) {
         paths.add(catelogId);
         CategoryEntity entity = this.getById(catelogId);
-        if(entity.getParentCid() != 0){
-            findParentPath(entity.getParentCid(),paths);
+        if (entity.getParentCid() != 0) {
+            findParentPath(entity.getParentCid(), paths);
         }
         return paths;
     }
