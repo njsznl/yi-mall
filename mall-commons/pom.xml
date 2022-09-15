@@ -13,13 +13,6 @@
 
 
     <dependencies>
-        <!-- 引入MyBatisPlus的依赖 -->
-        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>3.4.3.4</version>
-        </dependency>
         <!-- 添加lombok的依赖 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -43,7 +36,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.1</version>
+            <version>3.4.3.4</version>
         </dependency>
 
         <!-- mysql依赖 -->
