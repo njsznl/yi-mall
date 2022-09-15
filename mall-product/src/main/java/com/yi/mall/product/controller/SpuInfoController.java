@@ -27,6 +27,21 @@ public class SpuInfoController {
     private SpuInfoService spuInfoService;
 
     /**
+     * 商品的上架功能
+     * 传递过来一个spuID
+     * 我们就需要根据SPUID查询出需要存储在ElasticSearch中的数据
+     * 然后把数据存储到ELasticSearch中，并修改该SPU的状态为上架
+     *
+     * @param spuId id
+     * @return R
+     */
+    @PostMapping("/{spuId}/up")
+    public R spuUp(@PathVariable("spuId") Long spuId) {
+        spuInfoService.up(spuId);
+        return R.ok();
+    }
+
+    /**
      * 列表
      */
     @RequestMapping("/list")
