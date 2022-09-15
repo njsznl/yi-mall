@@ -3,7 +3,7 @@
 
 <mapper namespace="com.yi.mall.product.dao.CategoryDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.yi.mall.product.entity.CategoryEntity" id="categoryMap">
         <result property="catId" column="cat_id"/>
         <result property="name" column="name"/>
@@ -15,6 +15,8 @@
         <result property="productUnit" column="product_unit"/>
         <result property="productCount" column="product_count"/>
     </resultMap>
-
+    <select id="queryLeve1Category" resultMap="categoryMap">
+        SELECT * FROM pms_category WHERE parent_cid = 0
+    </select>
 
 </mapper>

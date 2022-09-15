@@ -40,6 +40,10 @@ spring:
             - Path=/app/ware/**
           filters:
             - RewritePath=/app/(?<segment>/?.*), /$\{segment}
+        - id: yimall_host_route
+          uri: lb://mall-product
+          predicates:
+            - Host=yi.mall.com
         - id: app_route
           uri: lb://renren-fast
           predicates:
