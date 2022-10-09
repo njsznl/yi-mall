@@ -61,16 +61,16 @@ public class OSSController {
             String postSignature = ossClient.calculatePostSignature(postPolicy);
 
             respMap = new LinkedHashMap<>();
+            //前端用的是accessid，害排查上传失败问题半天，去oss上查日志，看到access_id:undefined
             respMap.put("accessId", accessId);
             respMap.put("policy", encodedPolicy);
             respMap.put("signature", postSignature);
             respMap.put("dir", dir);
             respMap.put("host", host);
             respMap.put("expire", String.valueOf(expireEndTime / 1000));
-            // respMap.put("expire", formatISO8601Date(expiration));
 
         } catch (Exception e) {
-
+            log.error(e.getMessage(), e);
         } finally {
             ossClient.shutdown();
         }

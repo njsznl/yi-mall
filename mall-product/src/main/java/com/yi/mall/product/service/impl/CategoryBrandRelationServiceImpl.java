@@ -79,9 +79,8 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Override
     public void updateCategoryName(Long catId, String name) {
         CategoryBrandRelationEntity entity = new CategoryBrandRelationEntity();
-        entity.setCatelogId(catId);
         entity.setCatelogName(name);
-        this.update(entity, new UpdateWrapper<CategoryBrandRelationEntity>().eq("cagelog_id", catId));
+        this.update(entity, new UpdateWrapper<CategoryBrandRelationEntity>().eq("catelog_id", catId));
     }
 
     @Override

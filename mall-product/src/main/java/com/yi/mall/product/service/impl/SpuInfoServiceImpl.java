@@ -63,6 +63,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     private CouponFeignService couponFeignService;
     @Autowired
     private WareSkuFeginService wareSkuFeginService;
+    @Autowired
+    private SearchFeginService searchFeginService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -329,7 +331,6 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         // 3.更新SPUID对应的状态
         // 根据对应的状态更新商品的状态
         log.info("----->ES操作完成：{}", r.getCode());
-        System.out.println("-------------->" + r.getCode());
         if (r.getCode() == 0) {
             // 远程调用成功  更新商品的状态为 上架
             baseMapper.updateSpuStatusUp(spuId, ProductConstant.StatusEnum.SPU_UP.getCode());
@@ -338,8 +339,6 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }
     }
 
-    @Autowired
-    private SearchFeginService searchFeginService;
     /**
      * 根据skuIds获取对应的库存状态
      *

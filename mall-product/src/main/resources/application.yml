@@ -16,7 +16,17 @@ spring:
         server-addr: 192.168.56.10:8848
   mvc:
     static-path-pattern: /static/**
-
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.33.11
+    port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 1h
+      use-key-prefix: true
+      cache-null-values: true
 server:
   port: 8081
 mybatis-plus:

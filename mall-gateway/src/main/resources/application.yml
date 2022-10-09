@@ -44,6 +44,10 @@ spring:
           uri: lb://mall-product
           predicates:
             - Host=yi.mall.com
+        - id: msbmall_host_route3
+          uri: lb://mall-search
+          predicates:
+          - Host=yi.search.com
         - id: app_route
           uri: lb://renren-fast
           predicates:

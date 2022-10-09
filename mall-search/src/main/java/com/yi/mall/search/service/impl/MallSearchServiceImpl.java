@@ -8,6 +8,7 @@ import com.yi.mall.search.constant.ESConstant;
 import com.yi.mall.search.service.MallSearchService;
 import com.yi.mall.search.vo.SearchParam;
 import com.yi.mall.search.vo.SearchResult;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class MallSearchServiceImpl implements MallSearchService {
 
@@ -56,7 +58,7 @@ public class MallSearchServiceImpl implements MallSearchService {
             // 3.需要把检索的信息封装为SearchResult
             result = buildSearchResult(response, param);
         } catch (Exception e) {
-
+            log.error(e.getMessage(), e);
         }
         return result;
     }
