@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * ElasticSearch配置类
  *
- * @author : xiao on 2022/9/15 22:55
+ * @author : yi on 2022/9/15 22:55
  * @version : 1.0
  */
 @Configuration

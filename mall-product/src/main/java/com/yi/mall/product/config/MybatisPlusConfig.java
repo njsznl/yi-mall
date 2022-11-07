@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * 分页插件配置
  *
- * @author : xiao on 2022/9/14 0:50
+ * @author : yi on 2022/9/14 0:50
  * @version : 1.0
  */
 @EnableTransactionManagement

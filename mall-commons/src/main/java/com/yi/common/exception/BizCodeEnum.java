@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 错误编码和错误信息枚举
  *
- * @author : xiao on 2022/9/13 21:26
+ * @author : yi on 2022/9/13 21:26
  * @version : 1.0
  */
 @Getter

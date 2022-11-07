@@ -8,12 +8,18 @@ import com.yi.common.utils.Query;
 import com.yi.mall.product.dao.SkuInfoDao;
 import com.yi.mall.product.entity.SkuInfoEntity;
 import com.yi.mall.product.service.SkuInfoService;
+import com.yi.mall.product.service.SkuSaleAttrValueService;
+import com.yi.mall.product.vo.SkuItemSaleAttrVo;
+import com.yi.mall.product.vo.SpuItemVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ThreadPoolExecutor;
 
 
 /**
@@ -21,6 +27,9 @@ import java.util.Map;
  */
 @Service("skuInfoService")
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> implements SkuInfoService {
+
+    @Autowired
+    private ThreadPoolExecutor threadPoolExecutor;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -86,5 +95,27 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     @Override
     public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {
         return this.list(new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId));
+    }
+
+    @Autowired
+    private SkuSaleAttrValueService skuSaleAttrValueService;
+
+    @Override
+    public SpuItemVO item(Long skuId) {
+        SpuItemVO vo = new SpuItemVO();
+
+        CompletableFuture<SkuInfoEntity> skuInfoFuture = CompletableFuture.supplyAsync(() -> {
+            SkuInfoEntity skuInfoEntity = getById(skuId);
+            vo.setInfo(skuInfoEntity);
+            return skuInfoEntity;
+        }, threadPoolExecutor);
+
+        skuInfoFuture.thenAcceptAsync(skuInfoEntity -> {
+            Long spuId = skuInfoEntity.getSpuId();
+            List<SkuItemSaleAttrVo> saleAttrs =  skuSaleAttrValueService.getSkuSaleAttrValueBySpuId(spuId);
+            vo.setSaleAttrs(saleAttrs);
+        }, threadPoolExecutor);
+
+        return null;
     }
 }

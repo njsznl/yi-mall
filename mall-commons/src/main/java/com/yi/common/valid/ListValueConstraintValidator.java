@@ -7,7 +7,7 @@ import java.util.HashSet;
 /**
  * 自定义validate
  *
- * @author : xiao on 2022/9/13 22:32
+ * @author : yi on 2022/9/13 22:32
  * @version : 1.0
  */
 public class ListValueConstraintValidator implements ConstraintValidator<ListValue, Integer> {

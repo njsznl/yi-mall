@@ -12,7 +12,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * 自定义校验注解
  *
- * @author : xiao on 2022/9/13 22:09
+ * @author : yi on 2022/9/13 22:09
  * @version : 1.0
  */
 @Documented

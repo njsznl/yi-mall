@@ -43,11 +43,15 @@ spring:
         - id: yimall_host_route
           uri: lb://mall-product
           predicates:
-            - Host=yi.mall.com
-        - id: msbmall_host_route3
+            - Host=mall.yi.com
+        - id: yimall_host_route2
+          uri: lb://mall-product
+          predicates:
+            - Host=item.yi.com
+        - id: yimall_host_route3
           uri: lb://mall-search
           predicates:
-          - Host=yi.search.com
+          - Host=search.yi.com
         - id: app_route
           uri: lb://renren-fast
           predicates:

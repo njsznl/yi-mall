@@ -9,7 +9,7 @@ import org.mapstruct.ReportingPolicy;
 /**
  * attr group relation mapper
  *
- * @author : xiao on 2022/9/14 4:04
+ * @author : yi on 2022/9/14 4:04
  * @version : 1.0
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)

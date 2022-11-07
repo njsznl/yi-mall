@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * vo转entity
  *
- * @author : xiao on 2022/9/14 3:58
+ * @author : yi on 2022/9/14 3:58
  * @version : 1.0
  */
 public interface BaseMapper<V, E> {
